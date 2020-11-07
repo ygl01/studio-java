@@ -20,5 +20,6 @@ public class User {
     private String pwd;
     private String salt;
     private String perms;
+    private String role;
 
 }

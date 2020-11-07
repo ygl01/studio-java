@@ -9,6 +9,10 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
+
 mybatis:
   type-aliases-package: com.ygl.pojo
   mapper-locations: classpath:mybatis/mapper/*.xml
+
+server:
+  port: 8081

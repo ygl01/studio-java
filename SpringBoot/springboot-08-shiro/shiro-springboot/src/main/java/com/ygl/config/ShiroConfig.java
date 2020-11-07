@@ -19,23 +19,30 @@ public class ShiroConfig {
 
     //ShiroFilterFactoryBean  过滤 （第三步：连接到前端）
     @Bean
-    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager defaultWebSecurityManager){
+        public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager defaultWebSecurityManager){
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         //设置安全管理器
         bean.setSecurityManager(defaultWebSecurityManager);
         //配置shiro的内置过滤器
         /*
-            anon：无需认证就可以访问
-            authc：必须认证才可以访问
-            user：必须拥有 记住我 功能才能访问
-            perms：拥有对某个资源的权限才能访问
-            role：拥有某个角色才能访问
+            anon：匿名拦截器，不需要登录即可访问的资源，匿名用户或游客，一般用于过滤静态资源。
+            authc：需要认证登录才能访问
+            user：用户拦截器，表示必须存在用户
+            perms：权限授权拦截器，验证用户是否拥有权限
+                参数可写多个，表示需要某些权限才能通过，多个参数时写 perms[“user, admin”]，当有多个参数时必须每个参数都通过才算可以
+            roles：角色授权拦截器，验证用户是或否拥有角色。
+                   参数可写多个，表示某些角色才能通过，多个参数时写 roles[“admin,user”]，当有多个参数时必须每个参数都通过才算通过
+
          */
         //拦截
         Map<String, String> filterMap = new LinkedHashMap();
-        //授权，正常情况下，没有授权的会跳到未授权页面
-        filterMap.put("/user/add","perms[user:add]");
-        filterMap.put("/user/update","perms[user:update]");
+        //授权，正常情况下，没有授权的会跳到未授权页面  添加某个权限才可以
+//        filterMap.put("/user/add","perms[user:add]");
+//        filterMap.put("/user/update","perms[user:update]");
+
+        //授权   添加某个角色才可以
+        filterMap.put("/user/add","roles[admin]");
+
         //拦截
         filterMap.put("/toLogin","anon");
 //        filterMap.put("/user/add","authc");

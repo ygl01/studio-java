@@ -35,10 +35,10 @@ public class UserRealm extends AuthorizingRealm {
         //从认证中拿到当前登录的user对象
         User currentUser = (User) subject.getPrincipal();
         //设置当前用户的权限
-        info.addStringPermission(currentUser.getPerms());
+//        info.addStringPermission(currentUser.getPerms());
+        //设置角色
+        info.addRole(currentUser.getRole());
 
-
-        currentUser.getPerms();
         return info;
     }
     //认证
@@ -49,6 +49,7 @@ public class UserRealm extends AuthorizingRealm {
         UsernamePasswordToken userToken = (UsernamePasswordToken)token;
         //连接真实数据库
         User user = userSevice.queryByName(userToken.getUsername());
+        //pwd代表是用户输入的密码数据
         String pwd ="";
         for (int i = 0; i < userToken.getPassword().length; i++) {
             pwd =pwd +userToken.getPassword()[i];
