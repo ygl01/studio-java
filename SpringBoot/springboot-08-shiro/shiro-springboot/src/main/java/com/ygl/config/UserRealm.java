@@ -8,6 +8,7 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,9 @@ public class UserRealm extends AuthorizingRealm {
         //从认证中拿到当前登录的user对象
         User currentUser = (User) subject.getPrincipal();
         //设置当前用户的权限
-//        info.addStringPermission(currentUser.getPerms());
+        info.addStringPermission(currentUser.getPerms());
         //设置角色
-        info.addRole(currentUser.getRole());
+//        info.addRole(currentUser.getRole());
 
         return info;
     }
@@ -57,10 +58,10 @@ public class UserRealm extends AuthorizingRealm {
         if (user == null){
             return null;
         }
-
-        /*
-        System.out.println("密码："+user.getPwd());
-         */
+        //设计session 给前端返回session
+        Subject subject = SecurityUtils.getSubject();
+        Session session = subject.getSession();
+        session.setAttribute("loginUser",user);
         // 获取盐值
         String salt = user.getSalt();
         String password = PasswordUtils.getMd5(pwd, user.getName(), salt);

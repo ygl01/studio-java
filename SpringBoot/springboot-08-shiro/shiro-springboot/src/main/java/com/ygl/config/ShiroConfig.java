@@ -1,5 +1,6 @@
 package com.ygl.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,11 +38,11 @@ public class ShiroConfig {
         //拦截
         Map<String, String> filterMap = new LinkedHashMap();
         //授权，正常情况下，没有授权的会跳到未授权页面  添加某个权限才可以
-//        filterMap.put("/user/add","perms[user:add]");
-//        filterMap.put("/user/update","perms[user:update]");
+        filterMap.put("/user/add","perms[user:add]");
+        filterMap.put("/user/update","perms[user:update]");
 
         //授权   添加某个角色才可以
-        filterMap.put("/user/add","roles[admin]");
+//        filterMap.put("/user/add","roles[admin]");
 
         //拦截
         filterMap.put("/toLogin","anon");
@@ -74,6 +75,12 @@ public class ShiroConfig {
     @Bean
     public UserRealm userRealm(){
         return new UserRealm();
+    }
+
+    //创建ShiroDialect：用来整合shiro thymeleaf
+    @Bean
+    public ShiroDialect getShiroDialect(){
+        return new ShiroDialect();
     }
 
 }
