@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+
+person:
+  name: 1539@qq.com
+  age: 18
+  happy: true
+  birth: 2020/10/24
+  maps: {k1: v1,k2: v2,k3: v3}
+  lists: [ygl, ly, yanLi]
+  dog:
+    name: yingYing
+    age: 3
+
+dog:
+  last-name: yingYing
+  age: 3
+debug: true

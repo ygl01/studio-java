@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#整合mybatis
+mybatis:
+  type-aliases-package: com.kuang.pojo
+#  classpath代表resources mybatis前面千万不能带“/” 如果带"/"的话就从主文件目录下中寻找
+  mapper-locations: classpath:mybatis/mapper/*.xml
