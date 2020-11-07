@@ -56,7 +56,11 @@ public class MyController {
             return "login";
         }
     }
-
+    /**
+     * @author ygl
+     * @date 2020-11-07 10:29
+     * 未授权，不能登录
+    */
     @RequestMapping("/unauth")
     @ResponseBody
     public String unauthorized(){
