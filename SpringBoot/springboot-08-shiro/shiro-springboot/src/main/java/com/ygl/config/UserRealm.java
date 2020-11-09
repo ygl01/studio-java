@@ -42,34 +42,35 @@ public class UserRealm extends AuthorizingRealm {
 
         return info;
     }
+
     //认证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         System.out.println("执行了认证功能=》doGetAuthorizationInfo！");
 
-        UsernamePasswordToken userToken = (UsernamePasswordToken)token;
+        UsernamePasswordToken userToken = (UsernamePasswordToken) token;
         //连接真实数据库
         User user = userSevice.queryByName(userToken.getUsername());
         //pwd代表是用户输入的密码数据
-        String pwd ="";
+        String pwd = "";
         for (int i = 0; i < userToken.getPassword().length; i++) {
-            pwd =pwd +userToken.getPassword()[i];
+            pwd = pwd + userToken.getPassword()[i];
         }
-        if (user == null){
+        if (user == null) {
             return null;
         }
         //设计session 给前端返回session
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession();
-        session.setAttribute("loginUser",user);
+        session.setAttribute("loginUser", user);
         // 获取盐值
         String salt = user.getSalt();
         String password = PasswordUtils.getMd5(pwd, user.getName(), salt);
         char[] chars = password.toCharArray();
         userToken.setPassword(chars);
-        System.out.println("password："+password);
+        System.out.println("password：" + password);
         //密码认证   shiro来进行操作，防止获取到密码
-        return new SimpleAuthenticationInfo(user,user.getPwd(),user.getName());
+        return new SimpleAuthenticationInfo(user, user.getPwd(), user.getName());
 
     }
 }

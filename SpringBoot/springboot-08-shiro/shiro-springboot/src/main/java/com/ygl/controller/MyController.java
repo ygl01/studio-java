@@ -18,29 +18,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MyController {
 
-    @RequestMapping({"/","/index"})
-    public String toIndex(Model model){
-        model.addAttribute("msg","hello,shiro");
+    @RequestMapping({"/", "/index"})
+    public String toIndex(Model model) {
+        model.addAttribute("msg", "hello,shiro");
         return "index";
     }
 
     @RequestMapping("/user/add")
-    public String add(){
+    public String add() {
         return "/user/add";
     }
 
     @RequestMapping("/user/update")
-    public String update(){
+    public String update() {
         return "/user/update";
     }
 
     @RequestMapping("/toLogin")
-    public String toLogin(){
+    public String toLogin() {
         return "/login";
     }
 
     @RequestMapping("/login")
-    public String login(String username,String password,Model model){
+    public String login(String username, String password, Model model) {
         //获取当前用户请求
         Subject subject = SecurityUtils.getSubject();
         //封装用户数据
@@ -48,22 +48,23 @@ public class MyController {
         try {
             subject.login(token);//执行登陆方法 ， 如果没有异常就说明ok‘
             return "index";
-        }catch (UnknownAccountException e){//用户名不存在异常
-            model.addAttribute("msg","用户名错误");
+        } catch (UnknownAccountException e) {//用户名不存在异常
+            model.addAttribute("msg", "用户名错误");
             return "login";
-        }catch (IncorrectCredentialsException e){//密码错误
-            model.addAttribute("msg","密码错误");
+        } catch (IncorrectCredentialsException e) {//密码错误
+            model.addAttribute("msg", "密码错误");
             return "login";
         }
     }
+
     /**
      * @author ygl
      * @date 2020-11-07 10:29
      * 未授权，不能登录
-    */
+     */
     @RequestMapping("/unauth")
     @ResponseBody
-    public String unauthorized(){
+    public String unauthorized() {
         return "未授权，不能请求！";
     }
 }

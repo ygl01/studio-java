@@ -21,25 +21,26 @@ public class LoginController {
     /**
      * @author ygl
      * @date 2020-10-27 17:37
-    */
+     */
     @RequestMapping("/user/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpSession session){
-        if (!StringUtils.isEmpty(username) && "123456".equals(password)){
-            session.setAttribute("loginUser",username);
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpSession session) {
+        if (!StringUtils.isEmpty(username) && "123456".equals(password)) {
+            session.setAttribute("loginUser", username);
             return "redirect:/main.html";
-        }else {
-            model.addAttribute("msg","用户名或者密码错误");
+        } else {
+            model.addAttribute("msg", "用户名或者密码错误");
             return "index";
         }
     }
 
     /**
      * 注销
+     *
      * @author ygl
      * @date 2020-11-02 19:38
-    */
+     */
     @RequestMapping("/user/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "redirect/index.html";
 

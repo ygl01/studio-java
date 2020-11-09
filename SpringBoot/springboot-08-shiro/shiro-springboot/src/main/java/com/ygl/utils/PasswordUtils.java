@@ -28,7 +28,7 @@ public class PasswordUtils {
      * 证书凭证
      *
      * @param username 登录名
-     * @param salt      盐值
+     * @param salt     盐值
      * @return
      */
     public static String getCredentialsSalt(String username, String salt) {
@@ -47,9 +47,9 @@ public class PasswordUtils {
     /**
      * 字符串加密函数MD5实现
      *
-     * @param password  密码
+     * @param password 密码
      * @param username 用户名
-     * @param salt      盐值
+     * @param salt     盐值
      * @return
      */
     public static String getMd5Password(String password, String username, String salt) {

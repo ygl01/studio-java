@@ -20,23 +20,23 @@ public class DruidConfig {
 
     @ConfigurationProperties(prefix = "spring.datasource")
     @Bean
-    public DataSource druidDataSource(){
+    public DataSource druidDataSource() {
         return new DruidDataSource();
     }
 
     //后台监控：
     @Bean
-    public ServletRegistrationBean statViewServlet(){
+    public ServletRegistrationBean statViewServlet() {
         ServletRegistrationBean<StatViewServlet> bean = new ServletRegistrationBean<>(new StatViewServlet());
 
         //后台需要有人登录，账号密码配置
         HashMap<String, String> initParameters = new HashMap<>();
         //增加配置
-        initParameters.put("loginUsername","admin");//登录key是固定的
-        initParameters.put("loginPassword","123456");
+        initParameters.put("loginUsername", "admin");//登录key是固定的
+        initParameters.put("loginPassword", "123456");
 
         //允许谁可以访问
-        initParameters.put("allow","");
+        initParameters.put("allow", "");
 
         bean.setInitParameters(initParameters);//设置初始参数
         return bean;

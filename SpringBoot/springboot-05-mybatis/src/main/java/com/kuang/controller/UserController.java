@@ -20,29 +20,29 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("userList")
-    public List<User> userList(){
+    public List<User> userList() {
         return userService.userList();
     }
 
     @GetMapping("/userById")
-    public User userById(int id){
+    public User userById(int id) {
         return userService.userById(id);
     }
 
     @DeleteMapping("deleterUserById")
-    public int deleterUserById(int id){
-       return userService.deleterUserById(id);
+    public int deleterUserById(int id) {
+        return userService.deleterUserById(id);
     }
 
     @PutMapping("updateUser")
-    public int updateUser(@RequestBody User user){
-        System.out.println("user值："+user);
+    public int updateUser(@RequestBody User user) {
+        System.out.println("user值：" + user);
         return userService.updateUser(user);
     }
 
     @PostMapping("/addUser")
-    public int addUser(@RequestBody User user){
-        System.out.println("user值："+user);
+    public int addUser(@RequestBody User user) {
+        System.out.println("user值：" + user);
         return userService.addUser(user);
     }
 

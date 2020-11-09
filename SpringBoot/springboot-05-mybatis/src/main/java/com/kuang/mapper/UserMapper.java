@@ -18,9 +18,13 @@ import java.util.List;
 public interface UserMapper {
 
     List<User> userList();
+
     User userById(int id);
+
     int deleterUserById(int id);
+
     int updateUser(@RequestBody User user);
+
     int addUser(User user);
 
 }

@@ -19,16 +19,16 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-           registry.addViewController("/").setViewName("index");
-           registry.addViewController("/index.html").setViewName("index");
-           registry.addViewController("/main.html").setViewName("dashboard");
+        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/index.html").setViewName("index");
+        registry.addViewController("/main.html").setViewName("dashboard");
     }
 //    @Autowired
 //    private LoginHandlerInterceptor loginHandlerInterceptor;
 
     //自定义国际化就生效了
     @Bean
-    public LocaleResolver localeResolver(){
+    public LocaleResolver localeResolver() {
         return new MyLocaleResolver();
     }
 
@@ -36,6 +36,6 @@ public class MyMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor())
-                .addPathPatterns("/**").excludePathPatterns("/index.html","/","/user/login","/css/**","/img/**","/js/**");
+                .addPathPatterns("/**").excludePathPatterns("/index.html", "/", "/user/login", "/css/**", "/img/**", "/js/**");
     }
 }

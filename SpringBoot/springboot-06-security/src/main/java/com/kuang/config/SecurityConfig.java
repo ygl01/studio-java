@@ -49,8 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //注销： 开启了注销功能
         http.logout()
-         //跳转到首页
-        .logoutSuccessUrl("/");
+                //跳转到首页
+                .logoutSuccessUrl("/");
 
         //开启记住我功能
         http.rememberMe();
@@ -64,13 +64,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //从数据库也可以，从内存也可以
         auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-            //数据正常应该从数据库读取
+                //数据正常应该从数据库读取
                 //用户名   密码   权限
-            .withUser("ygl").password(new BCryptPasswordEncoder().encode("123456")).roles("vip2","vip3")
-            .and()
-            .withUser("root").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1","vip2","vip3")
-            .and()
-            .withUser("guest").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1");//这是从内存认证
+                .withUser("ygl").password(new BCryptPasswordEncoder().encode("123456")).roles("vip2", "vip3")
+                .and()
+                .withUser("root").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1", "vip2", "vip3")
+                .and()
+                .withUser("guest").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1");//这是从内存认证
         // auth.jdbcAuthentication()  这是从jdbc认证
 
         /*

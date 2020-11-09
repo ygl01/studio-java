@@ -21,39 +21,43 @@ public class EmployeeDao {
     private DepartmentDao departmentDao;
     //模拟员工数据库
     public static Map<Integer, Employee> employees = null;
+
     static {
 
         employees = new HashMap<>();
 
-        employees.put(1001,new Employee(1001,"aa","A15252554@qq.com",1,new Department(101,"后勤部")));
-        employees.put(1002,new Employee(1002,"bb","B15252554@qq.com",0,new Department(102,"市场部")));
-        employees.put(1003,new Employee(1003,"cc","C15252554@qq.com",1,new Department(103,"教学部")));
-        employees.put(1004,new Employee(1004,"dd","D15252554@qq.com",0,new Department(104,"教研部")));
-        employees.put(1005,new Employee(1005,"ee","E15252554@qq.com",0,new Department(105,"后勤部")));
+        employees.put(1001, new Employee(1001, "aa", "A15252554@qq.com", 1, new Department(101, "后勤部")));
+        employees.put(1002, new Employee(1002, "bb", "B15252554@qq.com", 0, new Department(102, "市场部")));
+        employees.put(1003, new Employee(1003, "cc", "C15252554@qq.com", 1, new Department(103, "教学部")));
+        employees.put(1004, new Employee(1004, "dd", "D15252554@qq.com", 0, new Department(104, "教研部")));
+        employees.put(1005, new Employee(1005, "ee", "E15252554@qq.com", 0, new Department(105, "后勤部")));
     }
 
     //主键自增
-    public static  Integer initId = 1006;
+    public static Integer initId = 1006;
+
     //新增一个员工
-    public void save(Employee employee){
-        if (employee.getId() == null){
+    public void save(Employee employee) {
+        if (employee.getId() == null) {
             employee.setId(initId);
             initId++;
         }
         employee.setDepartment(departmentDao.getDepartmentById(employee.getDepartment().getId()));
-        employees.put(employee.getId(),employee);
+        employees.put(employee.getId(), employee);
     }
+
     //查询全部员工
-    public Collection<Employee> getAll(){
+    public Collection<Employee> getAll() {
         return employees.values();
     }
+
     //查询一个员工
-    public Employee getEmployeeById(Integer id){
+    public Employee getEmployeeById(Integer id) {
         return employees.get(id);
     }
 
     //删除员工
-    public void deleteEmployeeById(Integer id){
+    public void deleteEmployeeById(Integer id) {
         employees.remove(id);
     }
 }

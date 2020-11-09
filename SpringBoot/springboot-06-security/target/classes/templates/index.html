@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,7 +16,7 @@
 
     <div class="ui segment" id="index-header-nav" th:fragment="nav-menu">
         <div class="ui secondary menu">
-            <a class="item"  th:href="@{/index}">首页</a>
+            <a class="item" th:href="@{/index}">首页</a>
 
             <!--登录注销-->
             <div class="right menu">
@@ -26,11 +27,11 @@
                     </a>
                 </div>
 
-            <!--如果登录-->
+                <!--如果登录-->
                 <div sec:authorize="isAuthenticated()">
                     <a class="item">
                         用户名：<span sec:authentication="name"></span>
-<!--                        角色：<span sec:authentication="principal.getAuthorities()"></span>-->
+                        <!--                        角色：<span sec:authentication="principal.getAuthorities()"></span>-->
                     </a>
                 </div>
                 <div sec:authorize="isAuthenticated()">
@@ -55,7 +56,7 @@
     <div>
         <br>
         <div class="ui three column stackable grid">
-            <div class="column"  sec:authorize="hasRole('vip1')">
+            <div class="column" sec:authorize="hasRole('vip1')">
                 <div class="ui raised segment">
                     <div class="ui">
                         <div class="content">
@@ -83,7 +84,7 @@
                 </div>
             </div>
 
-            <div class="column"  sec:authorize="hasRole('vip3')">
+            <div class="column" sec:authorize="hasRole('vip3')">
                 <div class="ui raised segment">
                     <div class="ui">
                         <div class="content">
@@ -99,7 +100,7 @@
 
         </div>
     </div>
-    
+
 </div>
 
 

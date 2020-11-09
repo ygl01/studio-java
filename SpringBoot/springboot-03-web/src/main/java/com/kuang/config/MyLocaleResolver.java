@@ -12,22 +12,21 @@ import java.util.Locale;
  * @description 自己的地区解析器
  * @date 2020/10/27 17:12
  */
-public class MyLocaleResolver implements LocaleResolver{
+public class MyLocaleResolver implements LocaleResolver {
     /**
+     * @param
+     * @return j解析请求
      * @author ygl
      * @date 2020-10-27 17:13
-     * @param
-     * @return
-     * j解析请求
-     * @since 
-    */
+     * @since
+     */
     @Override
     public Locale resolveLocale(HttpServletRequest httpServletRequest) {
         //获取请求中的参数链接
         String language = httpServletRequest.getParameter("l");
         Locale locale = Locale.getDefault(); //如果没有就使用默认的
         //如果请求的链接携带了地区参数
-        if (!StringUtils.isEmpty(language)){
+        if (!StringUtils.isEmpty(language)) {
             //zh_CN
             String[] split = language.split("_");
             //国家  地区

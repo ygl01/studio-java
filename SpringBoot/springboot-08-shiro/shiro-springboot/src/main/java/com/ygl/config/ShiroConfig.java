@@ -20,7 +20,7 @@ public class ShiroConfig {
 
     //ShiroFilterFactoryBean  过滤 （第三步：连接到前端）
     @Bean
-        public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager defaultWebSecurityManager){
+    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager defaultWebSecurityManager) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         //设置安全管理器
         bean.setSecurityManager(defaultWebSecurityManager);
@@ -38,17 +38,17 @@ public class ShiroConfig {
         //拦截
         Map<String, String> filterMap = new LinkedHashMap();
         //授权，正常情况下，没有授权的会跳到未授权页面  添加某个权限才可以
-        filterMap.put("/user/add","perms[user:add]");
-        filterMap.put("/user/update","perms[user:update]");
+        filterMap.put("/user/add", "perms[user:add]");
+        filterMap.put("/user/update", "perms[user:update]");
 
         //授权   添加某个角色才可以
 //        filterMap.put("/user/add","roles[admin]");
 
         //拦截
-        filterMap.put("/toLogin","anon");
+        filterMap.put("/toLogin", "anon");
 //        filterMap.put("/user/add","authc");
 //        filterMap.put("/user/update","authc");
-        filterMap.put("/user/*","authc");
+        filterMap.put("/user/*", "authc");
         bean.setFilterChainDefinitionMap(filterMap);
 
         //被拦截时 设置登录的请求
@@ -61,7 +61,7 @@ public class ShiroConfig {
 
     //DafaultWebSecurityManager 安全对象  （第二步：接管对象）
     @Bean(name = "securityManager")
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm){
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //关联userRealm
         securityManager.setRealm(userRealm);
@@ -73,13 +73,13 @@ public class ShiroConfig {
 
     //创建Realm对象  需要自定义 （第一步：创建对象）
     @Bean
-    public UserRealm userRealm(){
+    public UserRealm userRealm() {
         return new UserRealm();
     }
 
     //创建ShiroDialect：用来整合shiro thymeleaf
     @Bean
-    public ShiroDialect getShiroDialect(){
+    public ShiroDialect getShiroDialect() {
         return new ShiroDialect();
     }
 

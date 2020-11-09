@@ -8,5 +8,5 @@ spring:
 #整合mybatis
 mybatis:
   type-aliases-package: com.kuang.pojo
-#  classpath代表resources mybatis前面千万不能带“/” 如果带"/"的话就从主文件目录下中寻找
+  #  classpath代表resources mybatis前面千万不能带“/” 如果带"/"的话就从主文件目录下中寻找
   mapper-locations: classpath:mybatis/mapper/*.xml

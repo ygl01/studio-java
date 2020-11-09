@@ -26,51 +26,55 @@ public class EmployeeController {
     private DepartmentDao departmentDao;
 
     @RequestMapping("/emps")
-    public String list(Model model){
+    public String list(Model model) {
 
         Collection<Employee> all = employeeDao.getAll();
-        model.addAttribute("emps",all);
+        model.addAttribute("emps", all);
         return "emp/list";
     }
 
     @GetMapping("/emp")
-    public String toAddpage(Model model){
+    public String toAddpage(Model model) {
         Collection<Department> departments = departmentDao.getDepartments();
-        model.addAttribute("departments",departments);
+        model.addAttribute("departments", departments);
         return "emp/add";
     }
+
     @PostMapping("/emp")
-    public String addEmp(Employee employee){
+    public String addEmp(Employee employee) {
 
         employeeDao.save(employee);
         return "redirect:/emps";
     }
+
     //修改页面
     @GetMapping("/emp/{id}")
-    public String update(@PathVariable Integer id,Model model){
+    public String update(@PathVariable Integer id, Model model) {
 
         Employee employee = employeeDao.getEmployeeById(id);
-        model.addAttribute("emp",employee);
-        System.out.println("1111："+employee);
+        model.addAttribute("emp", employee);
+        System.out.println("1111：" + employee);
         Collection<Department> departments = departmentDao.getDepartments();
-        model.addAttribute("departments",departments);
+        model.addAttribute("departments", departments);
         return "emp/update";
     }
+
     //添加修改内容
     @PostMapping("/updateEmp")
-    public String updateEmp(Employee employee){
+    public String updateEmp(Employee employee) {
         Integer id = employee.getId();
         employeeDao.save(employee);
-         employee.setId(id);
+        employee.setId(id);
         return "redirect:/emps";
     }
+
     /**
      * @author ygl
      * @date 2020-11-02 19:25
-    */
+     */
     @GetMapping("/delemp/{id}")
-    public String deleteEmp(@PathVariable("id") int id){
-        System.out.println("删除的ID："+id);
+    public String deleteEmp(@PathVariable("id") int id) {
+        System.out.println("删除的ID：" + id);
         employeeDao.deleteEmployeeById(id);
         return "redirect:/emps";
     }
