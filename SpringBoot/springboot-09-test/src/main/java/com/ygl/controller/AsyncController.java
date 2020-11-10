@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020/11/9 16:03
  */
 @RestController
-@EnableAsync //开启异步任务
 public class AsyncController {
     @Autowired
     private AsynService asynService;
