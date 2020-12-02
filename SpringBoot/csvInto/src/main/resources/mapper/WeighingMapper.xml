@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygl.mapper.WeighingMapper">
+    <insert id="WeighingInto" parameterType="Weighing" useGeneratedKeys="false">
+        insert into weighing_data (code,vehicle_weight,axle_number,vehicle_speed,chedao_id,model_number,create_time)
+        values (
+            #{code},
+            #{vehicleWeight},
+            #{axleNumber},
+            #{vehicleSpeed},
+            #{chedaoId},
+            #{modelNumber},
+            #{createTime}
+            )
+    </insert>
+</mapper>

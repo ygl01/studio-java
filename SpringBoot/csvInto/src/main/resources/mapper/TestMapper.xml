@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygl.mapper.TestMapper">
+    <insert id="testIntoSql" parameterType="Test" useGeneratedKeys="false">
+        insert into test01 (id,name,age,address) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id},
+            #{item.name},
+            #{item.age},
+            #{item.address}
+            )
+        </foreach>
+    </insert>
+<!--    ...-->
+
+    <insert id="testIntoOne" parameterType="Test">
+        insert into test01 (id,name,age,address,update_time)
+        values (
+            #{id},
+            #{name},
+            #{age},
+            #{address},
+            #{updateTime}
+            )
+    </insert>
+</mapper>

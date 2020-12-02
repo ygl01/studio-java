@@ -1,0 +1,23 @@
+server:
+  port: 8086
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/csvino?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat,wall,log4j
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+
+mybatis:
+  type-aliases-package: com.ygl.entity
+  mapper-locations: classpath:mapper/*.xml
+
+File:
+  path: E:\work\test\
+
