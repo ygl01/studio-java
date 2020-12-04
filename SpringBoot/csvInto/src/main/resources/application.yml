@@ -3,14 +3,25 @@ server:
 
 spring:
   datasource:
-    username: root
-    password: root
-    url: jdbc:mysql://127.0.0.1:3306/csvino?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    username: shanxi
+    password: shanxigaosu
+    url: jdbc:mysql://10.188.88.10:3306/shanxi?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat,wall,log4j
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+#spring:
+#  datasource:
+#    username: root
+#    password: root
+#    url: jdbc:mysql://127.0.0.1:3306/csvino?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    filters: stat,wall,log4j
+#    useGlobalDataSourceStat: true
+#    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
 
 
@@ -19,5 +30,5 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 File:
-  path: E:\work\test\
+  path: D:\work\test\
 
